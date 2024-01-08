@@ -1,0 +1,15 @@
+services:
+  db:
+    container_name: db
+    image: postgres:15-bullseye
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASS}
+      - POSTGRES_DB=dev
+    volumes:
+      - postgres-data:/path/to/data
+volumes:
+  postgres-data:
+    driver: local
