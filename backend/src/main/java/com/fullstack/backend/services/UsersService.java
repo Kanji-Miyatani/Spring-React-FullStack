@@ -1,5 +1,6 @@
 package com.fullstack.backend.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,5 +16,8 @@ public class UsersService {
 
     public List<Users> getAllUsers(){
         return usersRepository.findAll();
+    }
+    public void addOneUser(Users user){
+        usersRepository.saveAndFlush(user);
     }
 }
