@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import jwt from "jsonwebtoken";
-import { useStorage } from "react-use";
+import {useStrage,StrageKey}  from "./UseStrage";
 
 const useLogin = () => {
   const [token, setToken] = useState(null);
   const [user, setUser] = useState<User | null>(null);
 
-  const { getItem, setItem } = useStorage("my-storage");
+  const { getItem, setItem } = useStrage(StrageKey.JWT);
 
   const handleSubmit = (e) => {
     e.preventDefault();

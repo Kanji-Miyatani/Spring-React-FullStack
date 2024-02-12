@@ -12,7 +12,28 @@ import {
 } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { teal } from "@mui/material/colors";
+import axios from "axios";
+import { ChangeEvent,MouseEvent, useState } from "react";
 export const Login = () => {
+  const [loginModel,setLoginModel] = useState<LoginModel>({password:"",userName:""});
+  const onPasswordChange= (e: ChangeEvent<HTMLInputElement>)=>{
+    setLoginModel({
+       ...loginModel,
+       password : e.target.value,
+    });
+  }
+  const onUsernameChange= (e: ChangeEvent<HTMLInputElement>)=>{
+    setLoginModel({
+       ...loginModel,
+       userName : e.target.value,
+    });
+  }
+
+  const onLoginButtonClick = (e: MouseEvent<HTMLElement>)=>{
+    axios.post('/api/login',loginModel)
+          .then();
+  }
+
   return (
     <Grid>
       <Paper
@@ -37,8 +58,13 @@ export const Login = () => {
             Sign In
           </Typography>
         </Grid>
-        <TextField label="Username" variant="standard" fullWidth required />
+        <TextField 
+          onChange={onUsernameChange}
+          label="Username" 
+          variant="standard" 
+          fullWidth required />
         <TextField
+         onChange={onPasswordChange}
           type="password"
           label="Password"
           variant="standard"
@@ -52,7 +78,12 @@ export const Login = () => {
           control={<Checkbox name="checkboxA" size="small" color="primary" />}
         />
         <Box mt={3}>
-          <Button type="submit" color="primary" variant="contained" fullWidth>
+          <Button 
+            onClick={}
+            type="submit" 
+            color="primary" 
+            variant="contained" 
+            fullWidth>
             サインイン
           </Button>
 
